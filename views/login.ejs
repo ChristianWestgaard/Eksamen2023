@@ -1,13 +1,18 @@
-<%- include(partials/header.ejs) %>
+<%- include('partials/header.ejs') %>
 
-<div>
+<div class="getinDiv">
     <form action="" method="post">
         
         <h3>What is your</h3>
-        <input name="loginU" type="text" placeholder="Username?">
+        <input class="getinInput" name="loginU" type="text" placeholder="Username?">
         <h3>And what is your</h3>
-        <input name="loginP" type="password" placeholder="Password?">
+        <input class="getinInput" name="loginP" type="password" placeholder="Password?">
 
     </form>
+    
+    <a class="alreadyLink" href="signup">Har du ikke en bruker?</a>
+
 </div>
-<%- include(partials/footer.ejs) %>
+
+
+<%- include('partials/footer.ejs') %>

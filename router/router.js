@@ -1,14 +1,15 @@
 const { Router } = require("express");//we need the express router to plug into applications
-const controller = require("../controllers/controllerGen"); //exports our controller to get our functions
+const controllerGen = require("../controllers/controllerGen"); //Send the general requests to the general controllers
+const controllerUser = require("../controllers/controllerUser"); //Send the Login and signup requests to the appropriate controller
 const router  = Router(); ///creates a new router
 
-router.get("/", controller.index_get);
+router.get("/", controllerGen.index_get);
 // router.post("/", controller.index_post);
 
-// router.get("/signup", controller.signup_get);
+router.get("/signup", controllerUser.signup_get);
 // router.post("/signup", controller.signup_post);
 
-// router.get("/logInn", controller.logInn_get);
+router.get("/login", controllerUser.login_get);
 // router.post("/logInn", controller.logInn_post);
 
 // router.get("/minPokeSide", controller.minPokeSide_get)

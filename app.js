@@ -12,4 +12,4 @@ app.use(express.json());
 app.use(router)
 
 app.listen(9000);
-console.log("Server is A'go on 6060");
+console.log("Server is A'go on 9000");
