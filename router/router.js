@@ -12,7 +12,7 @@ router.get("/signup", controllerUser.signup_get);
 router.get("/login", controllerUser.login_get);
 // router.post("/logInn", controller.logInn_post);
 
-// router.get("/minPokeSide", controller.minPokeSide_get)
-// router.delete("/minPokeSide", controller.minPokeSide_delete)
+router.get("/item", controllerGen.item_get);
+router.post("/item", controllerGen.item_post);
 
 module.exports = router;
