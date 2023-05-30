@@ -23,6 +23,7 @@
     "nodemon": "^2.0.22",
     "schema": "^0.2.1",
     "start": "^5.1.0",
+    "validate": "^5.2.0",
     "validator": "^13.9.0"
   }
 }
