@@ -4,13 +4,13 @@ const { stringify } = require('querystring')
 
 const userSchema = new mongoose.Schema({
     email: {
-        type: string,
+        type: String,
         required: true,
         unique: true,
         lowercase: true
     },
     username: {
-        string: string,
+        type: String,
         required: true,
         unique: true,
     },
