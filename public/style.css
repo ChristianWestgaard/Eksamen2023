@@ -188,3 +188,8 @@ body {
     height: 30px;
     width: 150px;
 }
+
+.headerText{
+    margin-top: 50px;
+    text-align: center;
+}
