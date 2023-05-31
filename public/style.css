@@ -219,3 +219,7 @@ body {
 
 .nr9 { grid-area: nr9; }
 
+.headerText{
+    margin-top: 50px;
+    text-align: center;
+}
