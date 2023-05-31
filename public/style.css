@@ -188,3 +188,34 @@ body {
     height: 30px;
     width: 150px;
 }
+
+
+.container {  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
+  gap: 0px 0px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "nr1 nr2 nr3"
+    "nr4 nr5 nr6"
+    "nr7 nr8 nr9";
+}
+
+.nr1 { grid-area: nr1; }
+
+.nr2 { grid-area: nr2; }
+
+.nr3 { grid-area: nr3; }
+
+.nr4 { grid-area: nr4; }
+
+.nr5 { grid-area: nr5; }
+
+.nr6 { grid-area: nr6; }
+
+.nr7 { grid-area: nr7; }
+
+.nr8 { grid-area: nr8; }
+
+.nr9 { grid-area: nr9; }
+
