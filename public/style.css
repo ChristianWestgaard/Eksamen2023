@@ -223,3 +223,9 @@ body {
     margin-top: 50px;
     text-align: center;
 }
+.item-content{
+  width: 500px;
+  height: 500px;
+  border-radius: 15px;
+  background-color: #8a8a8a;
+}

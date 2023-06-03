@@ -4,13 +4,13 @@ const controllerUser = require("../controllers/controllerUser"); //Send the Logi
 const router  = Router(); ///creates a new router
 
 router.get("/", controllerGen.index_get);
-// router.post("/", controller.index_post);
+router.post("/", controllerGen.index_post);
 
 router.get("/signup", controllerUser.signup_get);
-// router.post("/signup", controller.signup_post);
+router.post("/signup", controllerUser.signup_post);
 
 router.get("/login", controllerUser.login_get);
-// router.post("/logInn", controller.logInn_post);
+router.post("/login", controllerUser.login_post);
 
 router.get("/item", controllerGen.item_get);
 router.post("/item", controllerGen.item_post);

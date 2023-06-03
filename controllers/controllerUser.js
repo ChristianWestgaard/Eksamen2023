@@ -1,9 +1,13 @@
 const mongoose = require('mongoose');
+const { MongoClient } = require('mongodb');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const handleErrors = ('err')
 require('dotenv').config()
 
+const uri = `mongodb+srv://CRUDuser:jhZpvLwSaa6TIoXF@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+const client = new MongoClient(uri)
 
 //MODELS
 const User = require('../models/uModel')
@@ -41,6 +45,10 @@ module.exports.signup_post = async (req,res) => {
     try {
         const user = await User.create({ username, email, password })
         res.status(201).json(user)
+        const database = client.db("valdUser")
+        const doc = req.body
+        console.log(doc);
+        database.collection("user").insertOne(doc)
     } catch (err) {
         console.log(err);
         res.status(400).send('error, user not created')
@@ -60,6 +68,6 @@ module.exports.login_get = async (req,res) => {
 }
 
 //post
-module.exports.login_get = async (req,res) => {
+module.exports.login_post = async (req,res) => {
     res.render('login')
 }
