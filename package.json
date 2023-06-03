@@ -13,6 +13,7 @@
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.0",
+    "cloudinary": "^1.37.0",
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "express": "^4.18.2",
@@ -24,7 +25,6 @@
     "nodemon": "^2.0.22",
     "schema": "^0.2.1",
     "start": "^5.1.0",
-    "validate": "^5.2.0",
     "validator": "^13.9.0"
   }
 }

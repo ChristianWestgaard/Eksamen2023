@@ -8,7 +8,23 @@ require('dotenv').config()
 //MODELS
 const User = require('../models/uModel')
 
+//Erorr Handlers 
+const errEvent = (err) => {
+    console.log(err.message, err.code);
+    let error = {email: "", password: ""};
 
+    if (err.message === "No email found"){
+        error.email = "I am sorry, that is not a valid email"
+    }
+
+    if (err.code = 11000) {
+        err.doppleganger = "That email is in use, log inn with email"
+    }
+
+    if (err.message === "Password didnt match") {
+        err.password = "The passwords do not match."
+    }
+}   
 
 //SIGNUP CONTOLLER
 
