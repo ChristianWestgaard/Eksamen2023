@@ -1,13 +1,13 @@
+const items = require('../models/Item')
 const mongoose = require('mongoose');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const { log } = require('console');
 const { MongoClient } = require('mongodb');
 const handleErrors = ('err')
-const items = require('../models/iModles')
 require('dotenv').config()
 
-const uri = `mongodb+srv://CRUDuser:jhZpvLwSaa6TIoXF@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
+const uri = `mongodb+srv://CRUDuser:AQrpHnYdBX1L4way@cluster0.ij6ygv8.mongodb.net/?retryWrites=true&w=majority`
 mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
 const client = new MongoClient(uri)
 
@@ -23,6 +23,7 @@ module.exports.index_get = async (req,res) => {
     await items.find().limit(5)
     .then((result) => {
         res.render('index', {title: 'All items', item: result}) 
+        console.log(result)
     })
     .catch((err) => {
         res.render("error")

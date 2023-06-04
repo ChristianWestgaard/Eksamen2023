@@ -5,9 +5,9 @@ const jwt = require('jsonwebtoken');
 const handleErrors = ('err')
 require('dotenv').config()
 
-const uri = `mongodb+srv://CRUDuser:jhZpvLwSaa6TIoXF@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-const client = new MongoClient(uri)
+// const uri = `mongodb+srv://CRUDuser:jhZpvLwSaa6TIoXF@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
+// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
+// const client = new MongoClient(uri)
 
 //MODELS
 const User = require('../models/uModel')

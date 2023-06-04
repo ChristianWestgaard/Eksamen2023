@@ -1,7 +1,5 @@
-const { log, error } = require('console')
-const exp = require('constants')
-const mongoose = require('mongoose')
 
+const mongoose = require('mongoose')
 
 const itemSchema = new mongoose.Schema({
     input1: {
@@ -18,5 +16,5 @@ const itemSchema = new mongoose.Schema({
     }
 })
 
-const items = mongoose.model('items', itemSchema)
-module.exports = items
+const Item = mongoose.model('items', itemSchema)
+module.exports = Item;

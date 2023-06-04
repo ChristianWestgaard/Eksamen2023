@@ -1,5 +1,5 @@
 <%- include('partials/header.ejs') %>
-    <%if(item.lenght > 0){%>
+    <%if(item.length > 0){%>
         <%item.forEach(items => {%>
             <div class="item-content">
 
@@ -12,5 +12,7 @@
 
             </div>
         <%})%>
+    <%} else {%>
+        <p>There is nothing to display</p>
     <%}%>
 <%- include('partials/footer.ejs') %>
