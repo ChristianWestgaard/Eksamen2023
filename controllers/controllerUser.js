@@ -5,20 +5,23 @@ const jwt = require('jsonwebtoken');
 const handleErrors = ('err')
 require('dotenv').config()
 
-// const uri = `mongodb+srv://CRUDuser:jhZpvLwSaa6TIoXF@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
-// mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-// const client = new MongoClient(uri)
+const uri = `mongodb+srv://CRUDuser:NxsOh8j8F4Fom4GC@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
+//mongodb+srv://<username>:<password>@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "item" }, )
+const client = new MongoClient(uri)
 
 //MODELS
-const User = require('../models/uModel')
+const User = require('../models/Users')
 
 //Erorr Handlers 
 const errEvent = (err) => {
     console.log(err.message, err.code);
-    let error = {email: "", password: ""};
+    let error = {email: '', password: ''};
 
-    if (err.message === "No email found"){
-        error.email = "I am sorry, that is not a valid email"
+    if (err.message.includes('user validation failed')) {
+        Object.value(err.errors).forEach(error =>{
+            console.log(error.properties);
+        })
     }
 
     if (err.code = 11000) {
@@ -40,22 +43,14 @@ module.exports.signup_get = async (req,res) => {
 //post
 module.exports.signup_post = async (req,res) => {
     
-    const { username, email, password } = req.body
-        
+    const { email, password } = req.body
     try {
-        const user = await User.create({ username, email, password })
-        res.status(201).json(user)
-        const database = client.db("valdUser")
-        const doc = req.body
-        console.log(doc);
-        database.collection("user").insertOne(doc)
+        const user = await User.create({ email, password })   
+        res.render('index')
     } catch (err) {
-        console.log(err);
-        res.status(400).send('error, user not created')
-    }
-    
-    res.render('signup')
+    errEvent(err);
 
+    }
 }
 
 

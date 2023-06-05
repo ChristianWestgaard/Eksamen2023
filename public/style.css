@@ -248,11 +248,17 @@ body {
   margin-top: 10px;
 }
 
-i{
+.quoteText{
   text-align: center;
+  font-style: italic;
 }
 
 .authorText{
   text-align: right;
   margin-right: 20px;
+  font-style:inherit;
+}
+
+.quotesLink{
+  text-align: center;
 }
