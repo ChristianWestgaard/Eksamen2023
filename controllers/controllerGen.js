@@ -5,14 +5,14 @@ const jwt = require('jsonwebtoken');
 const { log } = require('console');
 const { MongoClient } = require('mongodb');
 const handleErrors = ('err')
-const random = require('mongoose-query-random')
+
 
 require('dotenv').config()
 
 
 const uri = `mongodb+srv://CRUDuser:NxsOh8j8F4Fom4GC@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
 //mongodb+srv://<username>:<password>@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "item" }, )
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "general" }, )
 const client = new MongoClient(uri)
 
 const storage = multer.memoryStorage();
@@ -22,7 +22,6 @@ const upload = multer({ storage: storage}).single('image')
 
 
 module.exports.index_get = async (req,res) => {
-    // console.log("cliiiiiient", client.getName())
 
     await Item.aggregate([ { $sample: { size: 1 } } ])
     .then((result) => {

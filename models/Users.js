@@ -21,6 +21,7 @@ const userSchema = new mongoose.Schema({
 
 userSchema.post("save", function (doc, next){
     console.log("New user has been made", doc);
+    next();
 })
 
 userSchema.pre("save", async function (next){

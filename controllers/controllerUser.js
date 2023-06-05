@@ -4,9 +4,10 @@ const multer = require('multer');
 const jwt = require('jsonwebtoken');
 require('dotenv').config()
 
+
 const uri = `mongodb+srv://CRUDuser:NxsOh8j8F4Fom4GC@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
 //mongodb+srv://<username>:<password>@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "item" }, )
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "general" }, )
 const client = new MongoClient(uri)
 
 //MODELS
@@ -43,6 +44,14 @@ const handleErrors = (err) => {
 
     return errors; 
 }
+const maxAge = 3 * 24 * 60 * 60;
+const createToken = (id) => {
+    return jwt.sign({ id }, 'secretToken', {
+        expiresIn: maxAge
+    });
+}
+
+
 //SIGNUP CONTOLLER
 
 //get
@@ -55,11 +64,18 @@ module.exports.signup_post = async (req,res) => {
     
     const { email, password } = req.body
     try {
-        const user = await User.create({ email, password })   
-         res.render('index')
+
+        const user = await User.create({ email, password });
+        const token = createToken(user._id);
+
+        res.cookie('jwt', token, { httpOnly: true, maxAge: maxAge * 1000 });
+        console.log(user._id);
+        res.status(201).json({ user: user._id });
+
     } catch (err) {
+
     const errors = handleErrors(err);
-    res.status(400).json({ errors })
+    res.status(400).json({ errors });
     }
 
    
