@@ -2,18 +2,15 @@
 const mongoose = require('mongoose')
 
 const itemSchema = new mongoose.Schema({
-    input1: {
+    quote: {
         type: String,
         required: [true, "Input 1 is required"],
+        maxLenght: 100
     },
-    input2: {
+    author: {
         type: String,
         required: [true, "Input 2 is required"],
     },
-    input3: {
-        type: String,
-        required: [true, "Input 3 is required"],
-    }
 })
 
 const Item = mongoose.model('items', itemSchema)

@@ -1,16 +1,19 @@
-const items = require('../models/Item')
+const Item = require('../models/Item')
 const mongoose = require('mongoose');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
 const { log } = require('console');
 const { MongoClient } = require('mongodb');
 const handleErrors = ('err')
+const random = require('mongoose-query-random')
+
 require('dotenv').config()
 
-const uri = `mongodb+srv://CRUDuser:AQrpHnYdBX1L4way@cluster0.ij6ygv8.mongodb.net/?retryWrites=true&w=majority`
-mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true })
-const client = new MongoClient(uri)
 
+const uri = `mongodb+srv://CRUDuser:NxsOh8j8F4Fom4GC@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
+//mongodb+srv://<username>:<password>@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority
+mongoose.connect(uri, { useNewUrlParser: true, useUnifiedTopology: true, dbName: "item" }, )
+const client = new MongoClient(uri)
 
 const storage = multer.memoryStorage();
 const upload = multer({ storage: storage}).single('image')
@@ -19,15 +22,15 @@ const upload = multer({ storage: storage}).single('image')
 
 
 module.exports.index_get = async (req,res) => {
+    // console.log("cliiiiiient", client.getName())
 
-    await items.find().limit(5)
+    await Item.aggregate([ { $sample: { size: 1 } } ])
     .then((result) => {
-        res.render('index', {title: 'All items', item: result}) 
         console.log(result)
+        res.render('index', {title: 'All items', Items: result}) 
+        console.log(mathInt);
     })
     .catch((err) => {
-        res.render("error")
-        console.log(error);
     })
 }
 

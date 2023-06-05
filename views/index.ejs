@@ -1,15 +1,12 @@
 <%- include('partials/header.ejs') %>
-    <%if(item.length > 0){%>
-        <%item.forEach(items => {%>
+    <%if(Items.length > 0){%>
+        <%Items.forEach(item => {%>
             <div class="item-content">
 
                 <div>
-                    <h1><%=items.input1%></h1>
-                    <h3>Input 2:</h3>
-                    <p><%=items.input2%></p>
-                    <h3>Input nr 3: <%=items.input3%></h3>
+                    <i class="quoteText">"<%=item.quote%>"</i>
+                    <p class="authorText"><%=item.author%></p>
                 </div>
-
             </div>
         <%})%>
     <%} else {%>

@@ -224,10 +224,12 @@ body {
     text-align: center;
 }
 .item-content{
-  width: 500px;
-  height: 500px;
+  margin-left: 40%;
+  margin-right: 40%;
   border-radius: 15px;
-  background-color: #8a8a8a;
+  background-color: #b6b6b6;
+  padding-top: 10px;
+  padding-bottom: 10px;
 }
 
 .inputH{
@@ -244,4 +246,13 @@ body {
 .group{
   margin: 10px;
   margin-top: 10px;
+}
+
+i{
+  text-align: center;
+}
+
+.authorText{
+  text-align: right;
+  margin-right: 20px;
 }
