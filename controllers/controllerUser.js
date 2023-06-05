@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const { MongoClient } = require('mongodb');
 const multer = require('multer');
 const jwt = require('jsonwebtoken');
-const handleErrors = ('err')
 require('dotenv').config()
 
 const uri = `mongodb+srv://CRUDuser:NxsOh8j8F4Fom4GC@cluster0.hwavrgw.mongodb.net/?retryWrites=true&w=majority`
@@ -14,25 +13,36 @@ const client = new MongoClient(uri)
 const User = require('../models/Users')
 
 //Erorr Handlers 
-const errEvent = (err) => {
+const handleErrors = (err) => {
     console.log(err.message, err.code);
-    let error = {email: '', password: ''};
+    let errors = {email: "", password: ""};
 
-    if (err.message.includes('user validation failed')) {
-        Object.value(err.errors).forEach(error =>{
-            console.log(error.properties);
-        })
+    //incorrect email
+    if(err.message === "incorrect email"){
+        errors.email = "that email is not registered";
     }
 
-    if (err.code = 11000) {
-        err.doppleganger = "That email is in use, log inn with email"
+        //incorrect password
+        if(err.message === "incorrect password"){
+            errors.password = "that password is not valid";
+        }
+
+    //duplicate error code
+    if (err.code === 11000){
+        errors.email = "that email is already registered";
+        return errors;
     }
 
-    if (err.message === "Password didnt match") {
-        err.password = "The passwords do not match."
+    //validation errors
+    if(err.message.includes("user validation failed")){
+                                        //destructuring the errors object, so we dont need to write .properties on error code
+        Object.values(err.errors).forEach(({properties}) => {//errors object inside err value
+            errors[properties.path] = properties.message; //upadting the error message with proper text
+        });
     }
-}   
 
+    return errors; 
+}
 //SIGNUP CONTOLLER
 
 //get
@@ -46,11 +56,13 @@ module.exports.signup_post = async (req,res) => {
     const { email, password } = req.body
     try {
         const user = await User.create({ email, password })   
-        res.render('index')
+         res.render('index')
     } catch (err) {
-    errEvent(err);
-
+    const errors = handleErrors(err);
+    res.status(400).json({ errors })
     }
+
+   
 }
 
 
