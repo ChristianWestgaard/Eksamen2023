@@ -3,16 +3,13 @@
 <h1 class="headerText">Sign Up</h1>
 
 <div class="getinDiv">
-    <form action="/signup" method="post">
-        <h3>What is your</h3>
+    <form action="/signup" method="post"><br>
+        <h3>EMAIL</h3>
         <input class="getinInput" name="email" type="text" placeholder="Email">
         <div class="email error"></div>
-        <h3>What is your</h3>
+        <h3>PASSWORD</h3>
         <input class="getinInput" name="password" type="password" placeholder="Password?">
         <div class="password error"></div>
-        <h3>Confirm password</h3>
-        <input class="getinInput" name="repeatPassword2" type="password" placeholder="Confirm password">
-        <div class="nonmirror error"></div>
         <br><br>
 
         <button type="submit">Sign-up</button>
@@ -26,19 +23,16 @@
     const form = document.querySelector('form');
     const emailError = document.querySelector('.email.error')
     const passwordError = document.querySelector('.password.error')
-    const nonmirrorError = document.querySelector('.nonmirror.error')
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
         emailError.textContent = '';
         passwordError.textContent = '';
-        nonmirrorError.textContent = '';
 
         //get the values
         const email = form.email.value;
         const password = form.password.value;
-        const repeatPassword = form.password.value;
 
         try{
             const result = await fetch('/signup', {
@@ -52,9 +46,6 @@
             if(data.errors){ 
                 emailError.textContent = data.errors.email;
                 passwordError.textContent = data.errors.password;
-            }
-            if(password != repeatPassword){
-                nonmirrorError.textContent = "These passwords do not match"
             }
             if (data.user){
                 location.assign(`/home/${email}`);

@@ -15,7 +15,7 @@ const userSchema = new mongoose.Schema({
     password: {
         type: String,
         required: [true, "Password is required"],
-        minlenght: [6, "Password must be at least 6 characters"]
+        minlength: [6, "Password must be at least 6 characters"]
     }
 })
 
@@ -30,8 +30,8 @@ userSchema.pre("save", async function (next){
     next();
 })
 
-userSchema.statics.login = async function (email,password) {
-    const user = await this.findOne({email: email});
+userSchema.statics.login = async function (email, password) {
+    const user = await this.findOne({ email });
     if(user){
         const auth = await bcrypt.compare(password, user.password)
 

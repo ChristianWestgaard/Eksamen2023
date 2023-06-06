@@ -5,7 +5,7 @@ const itemSchema = new mongoose.Schema({
     quote: {
         type: String,
         required: [true, "Input 1 is required"],
-        maxLenght: 100
+        maxLength: 100
     },
     author: {
         type: String,

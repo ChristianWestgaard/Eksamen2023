@@ -1,11 +1,11 @@
 const jwt = require('jsonwebtoken');
-const User = require('../models/uModel');
+const User = require('../models/Users');
 
 const requireAuth = (req, res, next) =>{
     const token = req.cookies.jwt;
 
     if(token){
-        jwt.verify(token, "fbiMostWantedList", (err, decodedToken) => {
+        jwt.verify(token, "noe_jeg_ikke_kan_dele_fordi_da_er_poenget_borte", (err, decodedToken) => {
             if(err){
                 console.log(err.message)
                 res.redirect("/login")
@@ -23,7 +23,7 @@ const checkUser = (req, res, next) =>{
     const token = req.cookies.jwt;
 
     if(token){
-        jwt.verify(token, "fbiMostWantedList", async(err, decodedToken)=>{
+        jwt.verify(token, "noe_jeg_ikke_kan_dele_fordi_da_er_poenget_borte", async(err, decodedToken)=>{
             if(err){
                 console.log(err.message);
                 res.locals.user = null;
