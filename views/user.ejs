@@ -1,0 +1,15 @@
+<%- include('partials/header.ejs') %>
+    <%if(Items.length > 0){%>
+        <%Items.forEach(items => {%>
+            <div class="item-content">
+
+                <div>
+                    <h1 class="quoteText">"<%=items.quote%>"</h1>
+                    <p class="authorText"><%=items.author%></p>
+                </div>
+            </div>
+        <%})%>
+    <%} else {%>
+        <p>There is nothing to display</p>
+    <%}%>
+<%- include('partials/footer.ejs') %>

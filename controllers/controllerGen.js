@@ -27,7 +27,6 @@ module.exports.index_get = async (req,res) => {
     .then((result) => {
         console.log(result)
         res.render('index', {title: 'All items', Items: result}) 
-        console.log(mathInt);
     })
     .catch((err) => {
     })
@@ -36,7 +35,6 @@ module.exports.index_get = async (req,res) => {
 module.exports.index_post = async (req,res) => {
     res.render('index')
 }
-
 module.exports.item_get = async (req,res) => {
     res.render('item')
 }
@@ -46,7 +44,7 @@ module.exports.item_post = async(req,res) => {
     res.render('item')
 
     try{
-        const database = client.db("item")
+        const database = client.db("general")
         const doc = req.body
 
         database.collection("items").insertOne(doc)
@@ -54,4 +52,14 @@ module.exports.item_post = async(req,res) => {
     } catch(err) {
         console.log(err);
     }
+}
+
+module.exports.user_get = async(req,res) => {
+    await Item.find({ "author": res.locals.user.email })
+    .then((result) => {
+        console.log(result);
+        res.render('user', {title:"All items", Items: result})
+    })
+    .catch((err) => {
+    })
 }
