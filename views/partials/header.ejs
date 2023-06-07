@@ -34,8 +34,8 @@
       </ul>
       <ul>
         <% if (user){ %>
-        <li> 
-          Welcome, <%= user.email %>
+        <li class="welcomeText"> 
+          Welcome,<a class="welcomeText" href="/<%= user.email %>"><%= user.email %></a>
         </li>
         <li>
           <a href="/logout">

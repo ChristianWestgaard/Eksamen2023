@@ -230,6 +230,7 @@ body {
   border-radius: 15px;
   background-color: #b6b6b6;
   padding: 10px;
+  padding-bottom: 60px;
 }
 
 .inputH{
@@ -323,4 +324,29 @@ body {
 
 .hjelpImg{
   width: 1300px;
+}
+
+.welcomeText{
+  color: white;
+}
+
+.deleteButton{
+  width: 10em;
+  height: 3em;
+  border: transparent;
+  position: unset;
+  justify-content: center;
+  float: left;
+  border: solid;
+}
+
+.editButton{
+  width: 10em;
+  height: 3em;
+  border: transparent;
+  position: unset;
+  justify-content: center;
+  align-self: center;
+  float: right;
+  border: solid;
 }

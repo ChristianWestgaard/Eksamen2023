@@ -7,8 +7,12 @@
                     <h1 class="quoteText">"<%=items.quote%>"</h1>
                     <p class="authorText"><%=items.author%></p>
                 </div>
+                <div class="containerB">
+                    <button type="submt" class="editButton">Edit</button>
+                    <button type="submit" class="deleteButton">Delete</button>
+                </div>
             </div>
-            <a href="/edit"><button></button></a>
+            
         <%})%>
     <%} else {%>
         <p>There is nothing to display</p>
