@@ -32,6 +32,10 @@ module.exports.index_get = async (req,res) => {
     })
 }
 
+module.exports.hjelp_get = (req, res) => {
+    res.render("hjelp")
+}
+
 module.exports.index_post = async (req,res) => {
     res.render('index')
 }

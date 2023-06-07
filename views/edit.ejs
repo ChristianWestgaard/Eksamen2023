@@ -1,0 +1,40 @@
+<%- include('partials/header.ejs') %>
+<% if (Items) { %>
+    <h2><%= email %>'s quotes</h2>
+  <% } %>
+
+  <% if (Items.length > 0) { %>
+    <ul>
+      <% Items.forEach((quote) => { %>
+        <li><%= quote %></li>
+      <% }); %>
+    </ul>
+  <% } else { %>
+    <p>No Items found.</p>
+  <% } %>
+
+  <% if (ownItems) { %>
+    <form action="/edit/<%= email %>" method="POST">
+      <input type="text" name="newQuote" placeholder="Enter new quote">
+      <input type="hidden" name="quote" value="<%= quote %>">
+      <input type="hidden" name="action" value="edit">
+      <button type="submit">Edit Quote</button>
+    </form>
+
+    <form action="/edit/<%= email %>" method="POST">
+      <input type="hidden" name="quote" value="<%= quote %>">
+      <input type="hidden" name="action" value="delete">
+      <button type="submit">Delete Quote</button>
+    </form>
+  <% } %>
+
+  <% if (userLoggedIn === email) { %>
+    <p>You are logged in as <%= userLoggedIn %>.</p>
+  <% } else { %>
+    <p>You are not logged in as <%= email %> but as <%= userLoggedIn %>.</p>
+  <% } %>
+
+  <% if (!ownItems && userLoggedIn === email) { %>
+    <p>You are viewing someone else's Items.</p>
+  <% } %>
+<%- include('partials/footer.ejs') %>

@@ -9,6 +9,8 @@ router.get("*", checkUser)
 router.get("/", controllerGen.index_get);
 router.post("/", controllerGen.index_post);
 
+router.get("/hjelp", controllerGen.hjelp_get)
+
 router.get("/signup", controllerUser.signup_get);
 router.post("/signup", controllerUser.signup_post);
 
@@ -21,5 +23,8 @@ router.get("/item", requireAuth, controllerGen.item_get);
 router.post("/item", requireAuth, checkUser, controllerGen.item_post);
 
 router.get("/:email", requireAuth, controllerGen.user_get)
+
+router.get("/edit/:email", requireAuth, controllerUser.edit_get)
+router.post("/edit/:email", checkUser, requireAuth, controllerUser.edit_post)
 
 module.exports = router;

@@ -300,3 +300,27 @@ body {
   margin-top: 10px;
 
 }
+.hjelpLink{
+  font-size: larger;
+  color: #0e0404;
+  margin-left: 44%;
+  margin-right: 43%;
+  
+}
+
+.hjelpDiv{
+  margin: 5%;
+
+}
+
+.hjelpHead{
+  font-size: xx-large;
+}
+
+.hjelpText{
+  font-size: x-large;
+}
+
+.hjelpImg{
+  width: 1300px;
+}

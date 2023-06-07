@@ -112,3 +112,79 @@ module.exports.logout_get = (req, res) => {
     res.cookie('jwt', '', { maxAge: 1 })
     res.redirect('/')
 }
+
+module.exports.edit_get = async (req, res) => { 
+    // userController.js
+
+
+    const userController = {
+    edit: {
+        get: [
+        async (req, res) => {
+            const email = req.params.email;
+            const loggedInUser = req.cookies.email;
+
+            try {
+            const user = await Account.findOne({ email });
+
+            if (user) {
+                const quotes = await Quotes.find({ user: user.email });
+
+                if (loggedInUser === email) {
+                const userId = req.user.id;
+                res.render("edit", { quotes, email, userId, userLoggedIn: loggedInUser, ownQuotes: true });
+                } else {
+                res.render("edit", { quotes, email, userLoggedIn: loggedInUser, ownQuotes: false });
+                }
+            } else {
+                res.send("User not found");
+            }
+            } catch (err) {
+            console.log(err);
+            res.send("Error occurred");
+            }
+        }
+        ],
+
+        post: [
+        async (req, res) => {
+            const email = req.params.email;
+            const loggedInUser = req.cookies.email;
+            const quote = req.body.quote;
+            const action = req.body.action;
+
+            try {
+            if (req.authToken() && loggedInUser === email && action === "edit") {
+                const newQuote = req.body.newQuote;
+                await Quotes.updateOne({ quote, user: email }, { $set: { quote: newQuote } });
+                console.log("Quote updated:", quote);
+            } else if (req.authToken() && loggedInUser === email && action === "delete") {
+                await Quotes.deleteOne({ quote, user: email });
+                console.log("Quote deleted:", quote);
+            } else {
+                console.log("Unauthorized action");
+                // Handle the unauthorized action appropriately, such as sending an error response or redirecting
+                res.status(401).send("Unauthorized action");
+                // Or redirect to an appropriate page
+                // res.redirect("/unauthorized");
+                return;
+            }
+
+            res.redirect(`/edit/${email}`);
+            } catch (err) {
+            console.log(err);
+            // Handle the error appropriately, such as sending an error response
+            res.status(500).send("Error occurred");
+            }
+        }
+        ]
+    }
+    };
+
+module.exports = userController;
+
+}
+
+module.exports.edit_post =(req,res) => {
+    res.render('edit/:user')
+}
